@@ -51,6 +51,8 @@ class Add : AppCompatActivity() {
         answerView=findViewById(R.id.answerView)
 
 
+
+
         gameContinue()
 
         buttonOk.setOnClickListener {
@@ -98,15 +100,18 @@ class Add : AppCompatActivity() {
             }
             if (userLife == 0){
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
-                val intent = Intent(this@Add,ResultActivity::class.java)
+                val ip=intent.getStringExtra("name")
 
+                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+                val i = Intent(this,ResultActivity::class.java)
 
-                intent.putExtra("score",userScore)
-                startActivity(intent)
-                finish()
+                i.putExtra("score",userScore)
+                i.putExtra("name",ip)
+               startActivity(i)
+               finish()
 
             }
-            else{
+            else
 
                 gameContinue()
 
@@ -114,7 +119,7 @@ class Add : AppCompatActivity() {
 
 
         }
-    }
+
     fun gameContinue(){
          number1 = Random.nextInt(0,100)
          number2 = Random.nextInt(0,100)

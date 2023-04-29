@@ -100,11 +100,14 @@ class Minus : AppCompatActivity() {
             }
             if (userLife == 0){
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
-                val intent = Intent(this@Minus,ResultActivity::class.java)
+                val ip=intent.getStringExtra("name")
 
+                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+                val i = Intent(this,ResultActivity::class.java)
 
-                intent.putExtra("score",userScore)
-                startActivity(intent)
+                i.putExtra("score",userScore)
+                i.putExtra("name",ip)
+                startActivity(i)
                 finish()
 
             }
