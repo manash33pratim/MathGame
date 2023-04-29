@@ -16,7 +16,7 @@
         <activity
             android:name=".MultiTable"
             android:parentActivityName=".MainActivity"
-
+            android:label="Multiplication Table"
             android:exported="false" />
         <activity
             android:name=".Divide"

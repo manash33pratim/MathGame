@@ -4,14 +4,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.manash.mathgame.databinding.ActivityMainBinding
+import com.manash.mathgame.fragment.Fragment1
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var addition : ImageButton
+
         lateinit var subtraction : ImageButton
     lateinit var multi : ImageButton
     lateinit var div : ImageButton
     lateinit var table: ImageButton
+
 
 
 
@@ -26,6 +34,17 @@ class MainActivity : AppCompatActivity() {
         div= findViewById(R.id.buttondiv)
         table=findViewById(R.id.table)
 
+
+        //---------------------------------------------------
+
+
+
+
+        //-------------------------------------
+
+
+
+        //--------------------------------------------------------------
         addition.setOnClickListener {
 
             val intent = Intent(this@MainActivity,Add::class.java)
@@ -60,4 +79,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
