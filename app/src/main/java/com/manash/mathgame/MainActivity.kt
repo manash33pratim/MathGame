@@ -8,7 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.manash.mathgame.databinding.ActivityMainBinding
+
 import com.manash.mathgame.fragment.Fragment1
 
 
@@ -47,29 +47,38 @@ class MainActivity : AppCompatActivity() {
         //--------------------------------------------------------------
         addition.setOnClickListener {
 
-            val intent = Intent(this@MainActivity,Add::class.java)
-            startActivity(intent)
+            val intent = Intent(this@MainActivity,UserName::class.java)
+
+            intent.putExtra("value",addition.transitionName)
            // finish()
+            startActivity(intent)
 
         }
         subtraction.setOnClickListener {
 
-            val intent = Intent(this@MainActivity,Minus::class.java)
-            startActivity(intent)
+            val intent = Intent(this@MainActivity,UserName::class.java)
+
+            intent.putExtra("value",subtraction.transitionName)
            // finish()
+            startActivity(intent)
+
 
         }
         multi.setOnClickListener {
 
-            val intent = Intent(this@MainActivity,Multi::class.java)
+            var intent = Intent(this@MainActivity,UserName::class.java)
+
+            intent.putExtra("value",multi.transitionName)
             startActivity(intent)
            // finish()
 
         }
         div.setOnClickListener {
-            val intent = Intent(this@MainActivity,Divide::class.java)
+            var intent = Intent(this@MainActivity,UserName::class.java)
+
+            intent.putExtra("value",div.transitionName)
             startActivity(intent)
-            //finish()
+        //finish()
         }
         table.setOnClickListener {
             val intent = Intent(this@MainActivity,MultiTable::class.java)
