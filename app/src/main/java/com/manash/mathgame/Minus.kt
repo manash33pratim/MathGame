@@ -109,8 +109,9 @@ class Minus : AppCompatActivity() {
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
-                startActivity(i)
+                i.putExtra("life",userLife)
                 i.putExtra("activity",activity)
+                startActivity(i)
                 finish()
 
             }
@@ -172,6 +173,7 @@ class Minus : AppCompatActivity() {
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
                 i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
                 startActivity(i)
                 finish()
             }

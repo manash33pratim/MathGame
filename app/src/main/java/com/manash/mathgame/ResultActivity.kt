@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import java.io.*
@@ -20,6 +21,7 @@ class ResultActivity : AppCompatActivity() {
     lateinit var data:String
     lateinit var home:ImageButton
     lateinit var scorebrd: ImageButton
+    lateinit var rating: RatingBar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +34,20 @@ class ResultActivity : AppCompatActivity() {
         tvname=findViewById(R.id.textViewname)
         home=findViewById(R.id.homebtn)
         scorebrd=findViewById(R.id.scorebrd)
+        rating=findViewById(R.id.ratingbar)
 
 
         val name=intent.getStringExtra("name")
         val score = intent.getIntExtra("score",0)
+        val life=intent.getIntExtra("life",0)
+
 
         if(score==0){
             tv.setText("Opps..")
+            rating.rating = 0F
         }else{
             tv.setText("Congratulations")
+            rating.rating =life.toFloat()
         }
         tvname.setText(name)
             result.text ="Your score is : " + score
@@ -112,6 +119,7 @@ class ResultActivity : AppCompatActivity() {
 
         }
 
+
         exit.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_MAIN)
@@ -130,4 +138,5 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
     }
+
 }}

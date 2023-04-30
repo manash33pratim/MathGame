@@ -109,6 +109,7 @@ class Divide : AppCompatActivity() {
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
                 i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
                 startActivity(i)
                 finish()
 
@@ -170,6 +171,7 @@ class Divide : AppCompatActivity() {
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
                 i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
                 startActivity(i)
                 finish()
             }
