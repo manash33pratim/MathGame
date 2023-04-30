@@ -32,11 +32,6 @@ class Multi : AppCompatActivity() {
     var number1=0
     var number2=0
 
-
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.multi)
@@ -75,6 +70,7 @@ class Multi : AppCompatActivity() {
                 else{
                     textQuestion.text = "Sorry! Your answer is \nwrong"
                     buttonOk.visibility= View.INVISIBLE
+                    answerView.visibility=View.VISIBLE
                     textLife.text = userLife.toString()
                     userLife--
                     answerView.text="Correct Answer is \n   $number1 x $number2=$correctAnswer"
@@ -122,6 +118,7 @@ class Multi : AppCompatActivity() {
     fun gameContinue(){
         number1 = Random.nextInt(0,100)
         number2 = Random.nextInt(0,10)
+        answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
 
 

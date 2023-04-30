@@ -5,23 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+
 
 class Scoreboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scoreboard)
-
-
-
-
-
-
-
         val savedFiles = applicationContext.fileList()
         savedFiles.reverse()
-        val lv = findViewById(R.id.list) as ListView
+        val lv = findViewById<ListView>(R.id.list)
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, savedFiles)
         lv.adapter = adapter
         lv.setOnItemClickListener { parent, view, position, id ->
@@ -36,5 +28,6 @@ class Scoreboard : AppCompatActivity() {
             intent.putExtras(bundle)
 
             startActivity(intent)
+            finish()
     }}
 }

@@ -23,7 +23,6 @@ class MultiTable : AppCompatActivity() {
         rgrp.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.first -> {
-                    // switch to fragment 1
                     replaceFragment(Fragment1())
                 }
                 R.id.second -> {
@@ -31,43 +30,40 @@ class MultiTable : AppCompatActivity() {
                     replaceFragment(Fragment2())
                 }
                 R.id.third -> {
-                    // Fragment 3
                     replaceFragment(Fragment3())
                 }
                 R.id.fourth -> {
-                    // Fragment 3
                     replaceFragment(Fragment4())
                 }
                 R.id.fifth -> {
-                    // Fragment 3
                     replaceFragment(Fragment5())
                 }
                 R.id.sixth -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment6())
                 }
                 R.id.seventh -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment7())
                 }
                 R.id.eightth -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment8())
                 }
                 R.id.ninth -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment9())
                 }
                 R.id.tenth -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment10())
                 }
                 R.id.eleven -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment11())
                 }
                 R.id.twelve -> {
-                    // Fragment 3
+
                     replaceFragment(Fragment12())
                 }
             }

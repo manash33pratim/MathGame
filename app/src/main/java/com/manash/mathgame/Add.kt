@@ -76,10 +76,12 @@ class Add : AppCompatActivity() {
                 }
                 else{
                     textQuestion.text = "Sorry! Your answer is \nwrong"
+
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
-                    answerView.text="Correct Answer is \n   $number1+$number2=$correctAnswer"
+                    answerView.visibility=View.VISIBLE
+                    answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.text="NEXT"
                 }
@@ -87,6 +89,8 @@ class Add : AppCompatActivity() {
             }
 
         }
+
+
         buttonNext.setOnClickListener {
             answerView.text=""
             gameContinue()
@@ -100,6 +104,7 @@ class Add : AppCompatActivity() {
 
             }
             if (userLife == 0){
+
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
@@ -124,6 +129,7 @@ class Add : AppCompatActivity() {
     fun gameContinue(){
          number1 = Random.nextInt(0,100)
          number2 = Random.nextInt(0,100)
+        answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
         textQuestion.text = "$number1 + $number2"
         correctAnswer = number1 + number2

@@ -77,6 +77,7 @@ class Minus : AppCompatActivity() {
                 else{
                     textQuestion.text = "Sorry! Your answer is \nwrong"
                     buttonOk.visibility= View.INVISIBLE
+                    answerView.visibility=View.VISIBLE
                     textLife.text = userLife.toString()
                     userLife--
                     answerView.text="Correct Answer is \n   $number1-$number2=$correctAnswer"
@@ -124,6 +125,7 @@ class Minus : AppCompatActivity() {
     fun gameContinue(){
          number1 = Random.nextInt(0,100)
          number2 = Random.nextInt(0,100)
+        answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
 
         if(number1>=number2){

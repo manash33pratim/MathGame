@@ -77,6 +77,7 @@ class Divide : AppCompatActivity() {
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
+                    answerView.visibility=View.VISIBLE
                     answerView.text="Correct Answer is \n   $number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.text="NEXT"
@@ -123,7 +124,7 @@ class Divide : AppCompatActivity() {
         number1 = Random.nextInt(1,100)
         number2 = Random.nextInt(1,10)
         buttonNext.text="SKIP"
-
+        answerView.visibility=View.INVISIBLE
         if(number1%number2==0){
             textQuestion.text = "$number1 / $number2"
             correctAnswer = (number1)/(number2)

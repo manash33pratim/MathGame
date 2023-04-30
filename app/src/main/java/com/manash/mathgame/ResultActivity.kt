@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import java.io.*
@@ -15,7 +16,10 @@ class ResultActivity : AppCompatActivity() {
     lateinit var playAgain : Button
     lateinit var exit : Button
     lateinit var tv: TextView
+    lateinit var tvname:TextView
     lateinit var data:String
+    lateinit var home:ImageButton
+    lateinit var scorebrd: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +29,9 @@ class ResultActivity : AppCompatActivity() {
         result = findViewById(R.id.textViewResult)
         playAgain = findViewById(R.id.buttonAgain)
         exit = findViewById(R.id.buttonExit)
+        tvname=findViewById(R.id.textViewname)
+        home=findViewById(R.id.homebtn)
+        scorebrd=findViewById(R.id.scorebrd)
 
 
         val name=intent.getStringExtra("name")
@@ -35,7 +42,8 @@ class ResultActivity : AppCompatActivity() {
         }else{
             tv.setText("Congratulations")
         }
-            result.text =name+ " your score is : " + score
+        tvname.setText(name)
+            result.text ="Your score is : " + score
      //adding------------------------------DELETE-----------------
         val del = File(applicationContext.filesDir, name)
 
@@ -96,5 +104,14 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+        home.setOnClickListener {
+            val intent = Intent(this@ResultActivity,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        scorebrd.setOnClickListener {
+            val intent = Intent(this@ResultActivity,Scoreboard::class.java)
+            startActivity(intent)
+            finish()
     }
-}
+}}
