@@ -1,5 +1,6 @@
 package com.manash.mathgame
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -120,7 +121,7 @@ class Multi : AppCompatActivity() {
     }
     fun gameContinue(){
         number1 = Random.nextInt(0,100)
-        number2 = Random.nextInt(0,100)
+        number2 = Random.nextInt(0,10)
         buttonNext.text="SKIP"
 
 
@@ -131,6 +132,51 @@ class Multi : AppCompatActivity() {
 
 
 
+    }
+    fun customExitDialog() {
+        // creating custom dialog
+        val dialog = Dialog(this@Multi)
+
+        // setting content view to dialog
+        dialog.setContentView(R.layout.custom_exit_dialog)
+
+        // getting reference of TextView
+        val dialogButtonYes = dialog.findViewById(R.id.textViewYes) as TextView
+        val dialogButtonNo = dialog.findViewById(R.id.textViewNo) as TextView
+
+        // click listener for No
+        dialogButtonNo.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //dismiss the dialog
+                dialog.dismiss()
+            }
+        })
+
+        // click listener for Yes
+        dialogButtonYes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                // dismiss the dialog
+                // and exit the exit
+                dialog.dismiss()
+
+                val ip=intent.getStringExtra("name")
+                val i=Intent(applicationContext,ResultActivity::class.java)
+
+
+                i.putExtra("score",userScore)
+                i.putExtra("name",ip)
+                startActivity(i)
+                finish()
+            }
+        })
+
+        // show the exit dialog
+        dialog.show()
+    }
+
+    override fun onBackPressed() {
+        // calling the function
+        customExitDialog()
     }
 
 

@@ -1,7 +1,9 @@
 package com.manash.mathgame
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 
 import android.widget.RadioGroup
 
@@ -17,6 +19,7 @@ class MultiTable : AppCompatActivity() {
         setContentView(R.layout.multi_table)
         replaceFragment(Fragment1())
         rgrp=findViewById(R.id.rgrp)
+        val homebtn=findViewById<ImageButton>(R.id.homebutton)
         rgrp.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.first -> {
@@ -69,8 +72,14 @@ class MultiTable : AppCompatActivity() {
                 }
             }
         }
-        //-----------------
 
+
+        //-----------------
+homebtn.setOnClickListener {
+    val int=Intent(this,MainActivity::class.java)
+    startActivity(int)
+    finish()
+}
     }
     fun  replaceFragment(fragment : Fragment){
         val fragmentManager = supportFragmentManager

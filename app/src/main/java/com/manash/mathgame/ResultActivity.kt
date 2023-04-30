@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import java.io.IOException
+import java.io.*
 
 
 class ResultActivity : AppCompatActivity() {
@@ -36,11 +36,31 @@ class ResultActivity : AppCompatActivity() {
             tv.setText("Congratulations")
         }
             result.text =name+ " your score is : " + score
-     //------------------------------------------------------------------------------------------
+     //adding------------------------------DELETE-----------------
+        val del = File(applicationContext.filesDir, name)
+
+            if (del.exists()) {
+                del.delete()
+   //------------------------------------add----------------------------
+                val file: String = name.toString()
+
+                data = score.toString()
 
 
+
+                try {
+                    val fout = openFileOutput(file, MODE_APPEND)
+                    fout.write(data.toByteArray())
+                    fout.close()
+                    Toast.makeText(this, "file saved", Toast.LENGTH_LONG).show()
+                } catch (to: IOException) {
+
+                }
+            }else{
                 val file:String = name.toString()
-                data=score.toString()
+
+                data= score.toString()
+
 
                 try{
                     val fout = openFileOutput(file, MODE_APPEND)
@@ -50,14 +70,11 @@ class ResultActivity : AppCompatActivity() {
                 }
                 catch (to: IOException){
 
-                }
+             }
+            }
 
 
-
-
-
-
-      //----------------------------
+//-------------------------------------------------------
 
         playAgain.setOnClickListener {
 

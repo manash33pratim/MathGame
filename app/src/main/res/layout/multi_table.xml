@@ -356,15 +356,15 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="512dp"
 
-
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="10"
             app:cardCornerRadius="70dp"
             app:cardElevation="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="100dp"
+
 
             >
 
@@ -372,10 +372,22 @@
                 android:id="@+id/fragmentdisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/tenmulti"
 
 
                 />
         </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/homebutton"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0"
+
+            android:background="@drawable/homeicon" />
 
     </LinearLayout>
 

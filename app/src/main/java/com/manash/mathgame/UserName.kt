@@ -41,6 +41,7 @@ class UserName : AppCompatActivity() {
                     val i = Intent(this,Add::class.java)
                     i.putExtra("name",username.text.toString())
                     startActivity(i)
+                    finish()
 
 
                 }else if (input=="sub"){
@@ -48,18 +49,21 @@ class UserName : AppCompatActivity() {
                     i2.putExtra("name",username.text.toString())
 
                     startActivity(i2)
+                    finish()
                 }else if (input=="multi") {
                     val i3 = Intent(this, Multi::class.java)
                     i3.putExtra("name",username.text.toString())
                     startActivity(i3)
+                    finish()
                 }else if (input=="div") {
                     val i4 = Intent(this, Divide::class.java)
                    i4.putExtra("name",username.text.toString())
                     startActivity(i4)
+                    finish()
                 }
             }
 
-finish()
+
 //-----------------------------
 //                val file:String = username.text.toString()
 //
