@@ -31,6 +31,7 @@ class Divide : AppCompatActivity() {
     var userLife = 3
     var number1=0
     var number2=0
+    var activity=2
 
 
 
@@ -102,11 +103,12 @@ class Divide : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
-                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+
                 val i = Intent(this,ResultActivity::class.java)
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                 startActivity(i)
                 finish()
 
@@ -167,6 +169,7 @@ class Divide : AppCompatActivity() {
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                 startActivity(i)
                 finish()
             }

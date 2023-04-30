@@ -33,30 +33,44 @@ android:background="@drawable/edittext2"
             android:textSize="25sp"/>
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/listview_bg"
-        android:orientation="horizontal"
+        android:layout_height="450dp"
         android:layout_margin="50dp"
-
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        >
+        android:background="@drawable/listview_bg"
+
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <ListView
 
             android:id="@+id/list"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:background="#BEFFFFFF"
             android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="#BEFFFFFF"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
 
 
             />
+
     </LinearLayout>
+
+    <ImageButton
+    android:id="@+id/home"
+    android:layout_width="70dp"
+    android:layout_height="80dp"
+    android:layout_gravity="center"
+
+    android:layout_marginBottom="10dp"
+    android:layout_weight="0"
+
+    android:background="@drawable/homeicon"
+    />
 
 
 </LinearLayout>

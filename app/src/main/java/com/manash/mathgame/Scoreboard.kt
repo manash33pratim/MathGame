@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
 import android.widget.ListView
 
 
@@ -29,5 +30,15 @@ class Scoreboard : AppCompatActivity() {
 
             startActivity(intent)
             finish()
-    }}
-}
+    }
+
+        val home=findViewById<ImageButton>(R.id.home)
+        home.setOnClickListener {
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()}
+
+
+    }
+    }
+

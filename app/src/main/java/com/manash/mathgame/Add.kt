@@ -31,7 +31,7 @@ class Add : AppCompatActivity() {
     var userLife = 3
     var number1=0
     var number2=0
-
+    var activity=1
 
 
 
@@ -80,6 +80,7 @@ class Add : AppCompatActivity() {
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
+
                     answerView.visibility=View.VISIBLE
                     answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
@@ -108,11 +109,12 @@ class Add : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
-                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+
                 val i = Intent(this,ResultActivity::class.java)
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                startActivity(i)
                finish()
 
@@ -137,7 +139,7 @@ class Add : AppCompatActivity() {
 
     }
     fun customExitDialog() {
-        // creating custom dialog
+
         val dialog = Dialog(this@Add)
 
         // setting content view to dialog
@@ -168,6 +170,7 @@ class Add : AppCompatActivity() {
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                 startActivity(i)
                 finish()
             }

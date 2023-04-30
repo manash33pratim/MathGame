@@ -54,13 +54,13 @@ class ResultActivity : AppCompatActivity() {
 
                 data = score.toString()
 
-
+                Toast.makeText(this, "Game over", Toast.LENGTH_LONG).show()
 
                 try {
                     val fout = openFileOutput(file, MODE_APPEND)
                     fout.write(data.toByteArray())
                     fout.close()
-                    Toast.makeText(this, "file saved", Toast.LENGTH_LONG).show()
+
                 } catch (to: IOException) {
 
                 }
@@ -74,7 +74,7 @@ class ResultActivity : AppCompatActivity() {
                     val fout = openFileOutput(file, MODE_APPEND)
                     fout.write(data.toByteArray())
                     fout.close()
-                    Toast.makeText(this,"file saved",Toast.LENGTH_LONG).show()
+
                 }
                 catch (to: IOException){
 
@@ -85,14 +85,30 @@ class ResultActivity : AppCompatActivity() {
 //-------------------------------------------------------
 
         playAgain.setOnClickListener {
+            val act=intent.getIntExtra("activity",0)
+            if (act==1){
 
+                val intent = Intent(this@ResultActivity,Add::class.java)
+                intent.putExtra("name",name)
+                startActivity(intent)
 
-
-
-
-            val intent = Intent(this@ResultActivity,MainActivity::class.java)
-            startActivity(intent)
-            finish()
+                finish()
+            }else if (act==2){
+                val intent = Intent(this@ResultActivity,Divide::class.java)
+                intent.putExtra("name",name)
+                startActivity(intent)
+                finish()
+            }else if (act==3) {
+                val intent = Intent(this@ResultActivity, Minus::class.java)
+                intent.putExtra("name",name)
+                startActivity(intent)
+                finish()
+            }else if (act==4) {
+                val intent = Intent(this@ResultActivity, Multi::class.java)
+                intent.putExtra("name",name)
+                startActivity(intent)
+                finish()
+            }
 
         }
 

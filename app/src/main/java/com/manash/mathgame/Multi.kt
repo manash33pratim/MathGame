@@ -31,6 +31,7 @@ class Multi : AppCompatActivity() {
     var userLife = 3
     var number1=0
     var number2=0
+    var activity=4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,11 +98,12 @@ class Multi : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
-                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+
                 val i = Intent(this,ResultActivity::class.java)
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                 startActivity(i)
                 finish()
 
@@ -162,6 +164,7 @@ class Multi : AppCompatActivity() {
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
                 startActivity(i)
                 finish()
             }
