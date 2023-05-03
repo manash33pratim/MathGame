@@ -1,5 +1,6 @@
 package com.manash.mathgame
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,11 +31,7 @@ class Multi : AppCompatActivity() {
     var userLife = 3
     var number1=0
     var number2=0
-
-
-
-
-
+    var activity=4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +71,7 @@ class Multi : AppCompatActivity() {
                 else{
                     textQuestion.text = "Sorry! Your answer is \nwrong"
                     buttonOk.visibility= View.INVISIBLE
+                    answerView.visibility=View.VISIBLE
                     textLife.text = userLife.toString()
                     userLife--
                     answerView.text="Correct Answer is \n   $number1 x $number2=$correctAnswer"
@@ -100,11 +98,13 @@ class Multi : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
-                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+
                 val i = Intent(this,ResultActivity::class.java)
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
                 startActivity(i)
                 finish()
 
@@ -120,7 +120,8 @@ class Multi : AppCompatActivity() {
     }
     fun gameContinue(){
         number1 = Random.nextInt(0,100)
-        number2 = Random.nextInt(0,100)
+        number2 = Random.nextInt(0,10)
+        answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
 
 
@@ -131,6 +132,53 @@ class Multi : AppCompatActivity() {
 
 
 
+    }
+    fun customExitDialog() {
+        // creating custom dialog
+        val dialog = Dialog(this@Multi)
+
+        // setting content view to dialog
+        dialog.setContentView(R.layout.custom_exit_dialog)
+
+        // getting reference of TextView
+        val dialogButtonYes = dialog.findViewById(R.id.textViewYes) as TextView
+        val dialogButtonNo = dialog.findViewById(R.id.textViewNo) as TextView
+
+        // click listener for No
+        dialogButtonNo.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //dismiss the dialog
+                dialog.dismiss()
+            }
+        })
+
+        // click listener for Yes
+        dialogButtonYes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                // dismiss the dialog
+                // and exit the exit
+                dialog.dismiss()
+
+                val ip=intent.getStringExtra("name")
+                val i=Intent(applicationContext,ResultActivity::class.java)
+
+
+                i.putExtra("score",userScore)
+                i.putExtra("name",ip)
+                i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
+                startActivity(i)
+                finish()
+            }
+        })
+
+        // show the exit dialog
+        dialog.show()
+    }
+
+    override fun onBackPressed() {
+        // calling the function
+        customExitDialog()
     }
 
 

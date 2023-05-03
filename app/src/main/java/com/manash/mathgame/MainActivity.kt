@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var multi : ImageButton
     lateinit var div : ImageButton
     lateinit var table: ImageButton
+    lateinit var scoreboard: ImageButton
 
 
 
@@ -33,13 +34,18 @@ class MainActivity : AppCompatActivity() {
         multi = findViewById(R.id.buttonMulti)
         div= findViewById(R.id.buttondiv)
         table=findViewById(R.id.table)
+        scoreboard=findViewById(R.id.scoreboard)
 
 
         //---------------------------------------------------
 
 
 
+scoreboard.setOnClickListener {
 
+    val i =Intent(this,Scoreboard::class.java)
+    startActivity(i)
+}
         //-------------------------------------
 
 
@@ -84,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity,MultiTable::class.java)
             startActivity(intent)
         }
+
+
 
 
 

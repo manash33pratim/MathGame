@@ -1,5 +1,6 @@
 package com.manash.mathgame
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,7 +31,7 @@ class Add : AppCompatActivity() {
     var userLife = 3
     var number1=0
     var number2=0
-
+    var activity=1
 
 
 
@@ -75,10 +76,13 @@ class Add : AppCompatActivity() {
                 }
                 else{
                     textQuestion.text = "Sorry! Your answer is \nwrong"
+
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
-                    answerView.text="Correct Answer is \n   $number1+$number2=$correctAnswer"
+
+                    answerView.visibility=View.VISIBLE
+                    answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.text="NEXT"
                 }
@@ -86,6 +90,8 @@ class Add : AppCompatActivity() {
             }
 
         }
+
+
         buttonNext.setOnClickListener {
             answerView.text=""
             gameContinue()
@@ -99,14 +105,17 @@ class Add : AppCompatActivity() {
 
             }
             if (userLife == 0){
+
                 Toast.makeText(applicationContext,"Game Over",Toast.LENGTH_LONG).show()
                 val ip=intent.getStringExtra("name")
 
-                Toast.makeText(this, ip, Toast.LENGTH_SHORT).show()
+
                 val i = Intent(this,ResultActivity::class.java)
 
                 i.putExtra("score",userScore)
                 i.putExtra("name",ip)
+                i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
                startActivity(i)
                finish()
 
@@ -123,11 +132,59 @@ class Add : AppCompatActivity() {
     fun gameContinue(){
          number1 = Random.nextInt(0,100)
          number2 = Random.nextInt(0,100)
+        answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
         textQuestion.text = "$number1 + $number2"
         correctAnswer = number1 + number2
 
 
+    }
+    fun customExitDialog() {
+
+        val dialog = Dialog(this@Add)
+
+        // setting content view to dialog
+        dialog.setContentView(R.layout.custom_exit_dialog)
+
+        // getting reference of TextView
+        val dialogButtonYes = dialog.findViewById(R.id.textViewYes) as TextView
+        val dialogButtonNo = dialog.findViewById(R.id.textViewNo) as TextView
+
+        // click listener for No
+        dialogButtonNo.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //dismiss the dialog
+                dialog.dismiss()
+            }
+        })
+
+        // click listener for Yes
+        dialogButtonYes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                // dismiss the dialog
+                // and exit the exit
+                dialog.dismiss()
+
+                val ip=intent.getStringExtra("name")
+                val i=Intent(applicationContext,ResultActivity::class.java)
+
+
+                i.putExtra("score",userScore)
+                i.putExtra("name",ip)
+                i.putExtra("activity",activity)
+                i.putExtra("life",userLife)
+                startActivity(i)
+                finish()
+            }
+        })
+
+        // show the exit dialog
+        dialog.show()
+    }
+
+    override fun onBackPressed() {
+        // calling the function
+        customExitDialog()
     }
 
 
