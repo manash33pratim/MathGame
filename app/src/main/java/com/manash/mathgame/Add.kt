@@ -1,12 +1,18 @@
 package com.manash.mathgame
 
+import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -18,6 +24,10 @@ class Add : AppCompatActivity() {
 
     lateinit var textScore : TextView
     lateinit var textLife : TextView
+
+
+    lateinit var level: TextView
+    lateinit var levelView: TextView
 
     lateinit var textQuestion : TextView
     lateinit var editTextAnswer : EditText
@@ -51,6 +61,14 @@ class Add : AppCompatActivity() {
         buttonNext = findViewById(R.id.buttonNext)
         answerView=findViewById(R.id.answerView)
 
+        //-----------animation-------------------
+        val image=findViewById<ImageView>(R.id.lifeImage)
+        val scoreIncrease=findViewById<TextView>(R.id.textViewScore)
+        //-------------------------------------------
+
+
+        level=findViewById(R.id.level)
+        levelView=findViewById(R.id.levelView)
 
 
 
@@ -67,7 +85,8 @@ class Add : AppCompatActivity() {
                 val userAnswer = input.toInt()
                 if (userAnswer == correctAnswer){
                     userScore += 10
-                    textQuestion.text = "Congratulation! \nYour answer is correct"
+
+                                      textQuestion.text = "Congratulation! \nYour answer is correct"
                     buttonOk.visibility= View.INVISIBLE
                     textScore.text = userScore.toString()
                     buttonNext.text="NEXT"
@@ -80,6 +99,34 @@ class Add : AppCompatActivity() {
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
+                    //------------animation---------------------
+//                    val animZoomIn = AnimationUtils.loadAnimation(this,
+//                        R.anim.zoom_in)
+//                    // assigning that animation to
+//                    // the image and start animation
+//                    image.startAnimation(animZoomIn)
+
+
+                    // Create the scale animation
+                    val scaleAnimation = ScaleAnimation(
+                        1f, 1.6f, // Start and end scale X
+                        1f, 1.6f, // Start and end scale Y
+                        Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
+                        Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
+                    ).apply {
+                        duration = 1000 // Animation duration in milliseconds
+                        repeatCount = Animation.RELATIVE_TO_SELF // Repeat the animation infinitely
+                        repeatMode = Animation.REVERSE // Reverse the animation when it repeats
+                    }
+
+                    // Start the animation
+                    image.startAnimation(scaleAnimation)
+
+
+
+
+
+                    //-----------------------------
 
                     answerView.visibility=View.VISIBLE
                     answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
@@ -130,8 +177,22 @@ class Add : AppCompatActivity() {
         }
 
     fun gameContinue(){
-         number1 = Random.nextInt(0,100)
-         number2 = Random.nextInt(0,100)
+        if(userScore<100){
+            levelView.text="1"
+         number1 = Random.nextInt(0,10)
+         number2 = Random.nextInt(0,10)}
+        else if (userScore>=100 && userScore<200){
+            levelView.text="2"
+            level.setTextColor(Color.YELLOW)
+            number1= Random.nextInt(0,100)
+            number2=Random.nextInt(0,100)
+        }else
+        {            levelView.text="3"
+            level.setTextColor(Color.BLUE)
+            number1= Random.nextInt(0,999)
+            number2=Random.nextInt(0,999)
+        }
+
         answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
         textQuestion.text = "$number1 + $number2"
@@ -143,10 +204,8 @@ class Add : AppCompatActivity() {
 
         val dialog = Dialog(this@Add)
 
-        // setting content view to dialog
-        dialog.setContentView(R.layout.custom_exit_dialog)
 
-        // getting reference of TextView
+        dialog.setContentView(R.layout.custom_exit_dialog)
         val dialogButtonYes = dialog.findViewById(R.id.textViewYes) as TextView
         val dialogButtonNo = dialog.findViewById(R.id.textViewNo) as TextView
 

@@ -5,13 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-
-
-
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
+import android.widget.*
 
 
 import kotlin.random.Random
@@ -53,7 +49,7 @@ class Minus : AppCompatActivity() {
         buttonNext = findViewById(R.id.buttonNext)
         answerView=findViewById(R.id.answerView)
 
-
+        val image=findViewById<ImageView>(R.id.lifeImage)
         gameContinue()
 
         buttonOk.setOnClickListener {
@@ -80,6 +76,35 @@ class Minus : AppCompatActivity() {
                     answerView.visibility=View.VISIBLE
                     textLife.text = userLife.toString()
                     userLife--
+
+                    //------------animation---------------------
+//                    val animZoomIn = AnimationUtils.loadAnimation(this,
+//                        R.anim.zoom_in)
+//                    // assigning that animation to
+//                    // the image and start animation
+//                    image.startAnimation(animZoomIn)
+
+
+                    // Create the scale animation
+                    val scaleAnimation = ScaleAnimation(
+                        1f, 1.6f, // Start and end scale X
+                        1f, 1.6f, // Start and end scale Y
+                        Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
+                        Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
+                    ).apply {
+                        duration = 1000 // Animation duration in milliseconds
+                        repeatCount = Animation.RELATIVE_TO_SELF // Repeat the animation infinitely
+                        repeatMode = Animation.REVERSE // Reverse the animation when it repeats
+                    }
+
+                    // Start the animation
+                    image.startAnimation(scaleAnimation)
+
+
+
+
+
+                    //-----------------------------
                     answerView.text="Correct Answer is \n   $number1-$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.text="NEXT"
