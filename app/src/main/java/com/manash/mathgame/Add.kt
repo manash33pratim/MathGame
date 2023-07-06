@@ -36,12 +36,16 @@ class Add : AppCompatActivity() {
     lateinit var buttonNext : Button
     lateinit var answerView: TextView
 
+    lateinit var skipNumber: TextView
+
     var correctAnswer = 0
     var userScore = 0
     var userLife = 3
     var number1=0
     var number2=0
     var activity=1
+
+    var skip=5
 
 
 
@@ -60,6 +64,8 @@ class Add : AppCompatActivity() {
         buttonOk = findViewById(R.id.buttonOK)
         buttonNext = findViewById(R.id.buttonNext)
         answerView=findViewById(R.id.answerView)
+
+        skipNumber=findViewById(R.id.skipNumber)
 
         //-----------animation-------------------
         val image=findViewById<ImageView>(R.id.lifeImage)
@@ -86,9 +92,20 @@ class Add : AppCompatActivity() {
                 if (userAnswer == correctAnswer){
                     userScore += 10
 
+                    if((userScore==50 || userScore==100 || userScore==150) && skip<5){
+
+                        skip++
+                        skipNumber.text=skip.toString()
+                        if(buttonNext.text=="SKIP"){
+                            skipNumber.visibility=View.VISIBLE
+                        }
+                    }
+
                                       textQuestion.text = "Congratulation! \nYour answer is correct"
                     buttonOk.visibility= View.INVISIBLE
                     textScore.text = userScore.toString()
+
+                    buttonNext.visibility=View.VISIBLE
                     buttonNext.text="NEXT"
 
 
@@ -97,6 +114,8 @@ class Add : AppCompatActivity() {
                     textQuestion.text = "Sorry! Your answer is \nwrong"
 
                     buttonOk.visibility= View.INVISIBLE
+                    skipNumber.visibility=View.INVISIBLE
+
                     textLife.text = userLife.toString()
                     userLife--
                     //------------animation---------------------
@@ -114,7 +133,7 @@ class Add : AppCompatActivity() {
                         Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
                         Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
                     ).apply {
-                        duration = 1000 // Animation duration in milliseconds
+                        duration = 500 // Animation duration in milliseconds
                         repeatCount = Animation.RELATIVE_TO_SELF // Repeat the animation infinitely
                         repeatMode = Animation.REVERSE // Reverse the animation when it repeats
                     }
@@ -131,6 +150,8 @@ class Add : AppCompatActivity() {
                     answerView.visibility=View.VISIBLE
                     answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
+                    buttonNext.visibility=View.VISIBLE
+                    skipNumber.visibility=View.INVISIBLE
                     buttonNext.text="NEXT"
                 }
 
@@ -140,7 +161,20 @@ class Add : AppCompatActivity() {
 
 
         buttonNext.setOnClickListener {
+            if(skip>1 && buttonNext.text=="SKIP"){
+            skip--
+                buttonNext.visibility=View.VISIBLE
+                skipNumber.visibility=View.VISIBLE
+            skipNumber.text=skip.toString()}
+            else if (skip<=1){
+                skipNumber.visibility=View.INVISIBLE
+                buttonNext.visibility=View.INVISIBLE
+                skip=0
+            }
+
             answerView.text=""
+
+
             gameContinue()
 
             editTextAnswer.setText("")
@@ -184,17 +218,29 @@ class Add : AppCompatActivity() {
         else if (userScore>=100 && userScore<200){
             levelView.text="2"
             level.setTextColor(Color.YELLOW)
+            number1= Random.nextInt(0,10)
+            number2=Random.nextInt(0,100)
+        }else if(userScore>=200 && userScore<300)
+        {            levelView.text="3"
+            level.setTextColor(Color.argb(255,127,80,30))
             number1= Random.nextInt(0,100)
             number2=Random.nextInt(0,100)
-        }else
-        {            levelView.text="3"
+        }else if(userScore>=300 && userScore<400)
+        {            levelView.text="4"
             level.setTextColor(Color.BLUE)
-            number1= Random.nextInt(0,999)
-            number2=Random.nextInt(0,999)
+            number1= Random.nextInt(0,100)
+            number2=Random.nextInt(0,1000)
+        }else{
+            levelView.text="5"
+            level.setTextColor(Color.RED)
+            number1= Random.nextInt(0,100)
+            number2=Random.nextInt(0,1000)
         }
 
         answerView.visibility=View.INVISIBLE
+
         buttonNext.text="SKIP"
+
         textQuestion.text = "$number1 + $number2"
         correctAnswer = number1 + number2
 

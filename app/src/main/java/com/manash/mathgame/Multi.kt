@@ -20,6 +20,10 @@ class Multi : AppCompatActivity() {
     lateinit var textQuestion : TextView
     lateinit var editTextAnswer : EditText
 
+    lateinit var level: TextView
+    lateinit var levelView: TextView
+
+
     lateinit var buttonOk : Button
     lateinit var buttonNext : Button
     lateinit var answerView: TextView
@@ -44,6 +48,12 @@ class Multi : AppCompatActivity() {
         buttonOk = findViewById(R.id.buttonOK)
         buttonNext = findViewById(R.id.buttonNext)
         answerView=findViewById(R.id.answerView)
+
+
+
+        level=findViewById(R.id.level)
+        levelView=findViewById(R.id.levelView)
+
 
         val image=findViewById<ImageView>(R.id.lifeImage)
         gameContinue()
@@ -87,7 +97,7 @@ class Multi : AppCompatActivity() {
                         Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
                         Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
                     ).apply {
-                        duration = 1000 // Animation duration in milliseconds
+                        duration = 500 // Animation duration in milliseconds
                         repeatCount = Animation.RELATIVE_TO_SELF // Repeat the animation infinitely
                         repeatMode = Animation.REVERSE // Reverse the animation when it repeats
                     }
