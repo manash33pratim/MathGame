@@ -85,21 +85,23 @@ class Add : AppCompatActivity() {
             val input = editTextAnswer.text.toString()
 
             if(input == ""){
-                Toast.makeText(applicationContext,"Please write an answer or click the next button",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Please write an answer and click the submit button",Toast.LENGTH_LONG).show()
             }
             else{
+
+                skipNumber.visibility=View.INVISIBLE
                 val userAnswer = input.toInt()
                 if (userAnswer == correctAnswer){
                     userScore += 10
 
-                    if((userScore==50 || userScore==100 || userScore==150) && skip<5){
-
-                        skip++
-                        skipNumber.text=skip.toString()
-                        if(buttonNext.text=="SKIP"){
-                            skipNumber.visibility=View.VISIBLE
-                        }
-                    }
+//                    if((userScore==50 || userScore==100 || userScore==150) && skip<5){
+//
+//                        skip++
+//                        skipNumber.text=skip.toString()
+//                        if(buttonNext.text=="SKIP"){
+//                            skipNumber.visibility=View.VISIBLE
+//                        }
+//                    }
 
                                       textQuestion.text = "Congratulation! \nYour answer is correct"
                     buttonOk.visibility= View.INVISIBLE
@@ -161,6 +163,10 @@ class Add : AppCompatActivity() {
 
 
         buttonNext.setOnClickListener {
+
+            if(buttonNext.text=="SKIP"){
+                skipNumber.visibility=View.VISIBLE
+            }
             if(skip>1 && buttonNext.text=="SKIP"){
             skip--
                 buttonNext.visibility=View.VISIBLE
@@ -240,7 +246,9 @@ class Add : AppCompatActivity() {
         answerView.visibility=View.INVISIBLE
 
         buttonNext.text="SKIP"
-
+        if (skip>0) {
+            skipNumber.visibility = View.VISIBLE
+        }
         textQuestion.text = "$number1 + $number2"
         correctAnswer = number1 + number2
 
