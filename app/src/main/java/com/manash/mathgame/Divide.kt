@@ -1,17 +1,14 @@
 package com.manash.mathgame
 
+
 import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-
-
-
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
+import android.widget.*
 import kotlin.random.Random
 
 class Divide : AppCompatActivity() {
@@ -25,6 +22,9 @@ class Divide : AppCompatActivity() {
     lateinit var buttonOk : Button
     lateinit var buttonNext : Button
     lateinit var answerView: TextView
+
+    lateinit var level: TextView
+    lateinit var levelView: TextView
 
     var correctAnswer = 0
     var userScore = 0
@@ -53,6 +53,11 @@ class Divide : AppCompatActivity() {
         answerView=findViewById(R.id.answerView)
 
 
+        level=findViewById(R.id.level)
+        levelView=findViewById(R.id.levelView)
+
+
+        val image=findViewById<ImageView>(R.id.lifeImage)
         gameContinue()
 
         buttonOk.setOnClickListener {
@@ -78,6 +83,35 @@ class Divide : AppCompatActivity() {
                     buttonOk.visibility= View.INVISIBLE
                     textLife.text = userLife.toString()
                     userLife--
+                    //------------animation---------------------
+//                    val animZoomIn = AnimationUtils.loadAnimation(this,
+//                        R.anim.zoom_in)
+//                    // assigning that animation to
+//                    // the image and start animation
+//                    image.startAnimation(animZoomIn)
+
+
+                    // Create the scale animation
+                    val scaleAnimation = ScaleAnimation(
+                        1f, 1.6f, // Start and end scale X
+                        1f, 1.6f, // Start and end scale Y
+                        Animation.RELATIVE_TO_SELF, 0.5f, // Pivot X
+                        Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y
+                    ).apply {
+                        duration = 500 // Animation duration in milliseconds
+                        repeatCount = Animation.RELATIVE_TO_SELF // Repeat the animation infinitely
+                        repeatMode = Animation.REVERSE // Reverse the animation when it repeats
+                    }
+
+                    // Start the animation
+                    image.startAnimation(scaleAnimation)
+
+
+
+
+
+                    //-----------------------------
+
                     answerView.visibility=View.VISIBLE
                     answerView.text="Correct Answer is \n   $number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
