@@ -36,7 +36,7 @@ class Add : AppCompatActivity() {
     lateinit var buttonNext : Button
     lateinit var answerView: TextView
 
-   // lateinit var skipNumber: TextView
+    lateinit var skipNumber: TextView
 
     var correctAnswer = 0
     var userScore = 0
@@ -45,7 +45,7 @@ class Add : AppCompatActivity() {
     var number2=0
     var activity=1
 
-  //  var skip=5
+    var skip=5
 
 
 
@@ -65,7 +65,7 @@ class Add : AppCompatActivity() {
         buttonNext = findViewById(R.id.buttonNext)
         answerView=findViewById(R.id.answerView)
 
-       // skipNumber=findViewById(R.id.skipNumber)
+        skipNumber=findViewById(R.id.skipNumber)
 
         //-----------animation-------------------
         val image=findViewById<ImageView>(R.id.lifeImage)
@@ -89,7 +89,7 @@ class Add : AppCompatActivity() {
             }
             else{
 
-             //   skipNumber.visibility=View.INVISIBLE
+                skipNumber.visibility=View.INVISIBLE
                 val userAnswer = input.toInt()
                 if (userAnswer == correctAnswer){
                     userScore += 10
@@ -116,7 +116,7 @@ class Add : AppCompatActivity() {
                     textQuestion.text = "Sorry! Your answer is \nwrong"
 
                     buttonOk.visibility= View.INVISIBLE
-                //    skipNumber.visibility=View.INVISIBLE
+                    skipNumber.visibility=View.INVISIBLE
 
                     textLife.text = userLife.toString()
                     userLife--
@@ -153,7 +153,7 @@ class Add : AppCompatActivity() {
                     answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.visibility=View.VISIBLE
-                        //        skipNumber.visibility=View.INVISIBLE
+                    skipNumber.visibility=View.INVISIBLE
                     buttonNext.text="NEXT"
                 }
 
@@ -164,19 +164,19 @@ class Add : AppCompatActivity() {
 
         buttonNext.setOnClickListener {
 
-//            if(buttonNext.text=="SKIP"){
-//                skipNumber.visibility=View.VISIBLE
-//            }
-//            if(skip>1 && buttonNext.text=="SKIP"){
-//            skip--
-//                buttonNext.visibility=View.VISIBLE
-//                skipNumber.visibility=View.VISIBLE
-//            skipNumber.text=skip.toString()}
-//            else if (skip<=1){
-//                skipNumber.visibility=View.INVISIBLE
-//                buttonNext.visibility=View.INVISIBLE
-//                skip=0
-//            }
+            if(buttonNext.text=="SKIP"){
+                skipNumber.visibility=View.VISIBLE
+            }
+            if(skip>1 && buttonNext.text=="SKIP"){
+            skip--
+                buttonNext.visibility=View.VISIBLE
+                skipNumber.visibility=View.VISIBLE
+            skipNumber.text=skip.toString()}
+            else if (skip<=1){
+                skipNumber.visibility=View.INVISIBLE
+                buttonNext.visibility=View.INVISIBLE
+                skip=0
+            }
 
             answerView.text=""
 
@@ -246,9 +246,9 @@ class Add : AppCompatActivity() {
         answerView.visibility=View.INVISIBLE
 
         buttonNext.text="SKIP"
-//        if (skip>0) {
-//            skipNumber.visibility = View.VISIBLE
-//        }
+        if (skip>0) {
+            skipNumber.visibility = View.VISIBLE
+        }
         textQuestion.text = "$number1 + $number2"
         correctAnswer = number1 + number2
 
