@@ -16,6 +16,7 @@
         android:hapticFeedbackEnabled="true"
         android:layout_height="110dp"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/multiplicationtable" />
 
@@ -24,7 +25,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="257dp"
-        android:layout_marginBottom="150dp"
+
         android:orientation="horizontal">
 
         <LinearLayout
@@ -44,6 +45,7 @@
                 android:layout_margin="30dp"
                 android:background="@drawable/plus"
                 android:hapticFeedbackEnabled="true"
+                android:transitionName="add"
 
 
 
@@ -53,10 +55,11 @@
             <ImageButton
                 android:id="@+id/buttonMulti"
                 android:layout_width="90dp"
+
                 android:layout_height="86dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="20dp"
-
+                android:transitionName="multi"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/cross"
                 android:text="Multiplication"
@@ -77,6 +80,7 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:transitionName="sub"
                 android:background="@drawable/minus"
 
 
@@ -86,13 +90,24 @@
                 android:id="@+id/buttondiv"
                 android:layout_width="142dp"
                 android:layout_height="159dp"
-
+                android:transitionName="div"
                 android:layout_gravity="start"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/division" />
 
         </LinearLayout>
+
+
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/scoreboard"
+        android:layout_width="112dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+
+        android:background="@drawable/scoreboard"
+        android:foregroundGravity="bottom" />
 
 </LinearLayout>
