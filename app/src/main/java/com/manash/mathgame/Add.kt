@@ -103,7 +103,7 @@ class Add : AppCompatActivity() {
 //
 //                    }
 
-                                      textQuestion.text = "Congratulation! \nYour answer is correct"
+                    textQuestion.text = "Congratulation! \nYour answer is correct"
                     buttonOk.visibility= View.INVISIBLE
                     textScore.text = userScore.toString()
 

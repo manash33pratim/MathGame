@@ -56,7 +56,7 @@ class ResultActivity : AppCompatActivity() {
 
             if (del.exists()) {
                 del.delete()
-   //------------------------------------add----------------------------
+   //------------------------------------update----------------------------
                 val file: String = name.toString()
 
                 data = score.toString()
@@ -72,6 +72,8 @@ class ResultActivity : AppCompatActivity() {
 
                 }
             }else{
+
+                //---------add new value-----------------
                 val file:String = name.toString()
 
                 data= score.toString()
