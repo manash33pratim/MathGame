@@ -146,6 +146,7 @@ android:layout_weight="1"
         android:textColorHint="@color/white"
         android:textSize="20sp" />
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end">
@@ -164,11 +165,11 @@ android:textColorHint="@color/white"
             android:background="@drawable/skipnumber"
             android:gravity="center"
             android:textSize="18sp"
-            /> -->
+            />-->
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="30dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

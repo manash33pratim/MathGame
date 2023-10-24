@@ -36,7 +36,7 @@ class Add : AppCompatActivity() {
     lateinit var buttonNext : Button
     lateinit var answerView: TextView
 
-   // lateinit var skipNumber: TextView
+    lateinit var skipNumber: TextView
 
     var correctAnswer = 0
     var userScore = 0
@@ -45,7 +45,7 @@ class Add : AppCompatActivity() {
     var number2=0
     var activity=1
 
-  //  var skip=5
+   var skip=5
 
 
 
@@ -89,7 +89,7 @@ class Add : AppCompatActivity() {
             }
             else{
 
-             //   skipNumber.visibility=View.INVISIBLE
+       //       skipNumber.visibility=View.INVISIBLE
                 val userAnswer = input.toInt()
                 if (userAnswer == correctAnswer){
                     userScore += 10
@@ -98,9 +98,9 @@ class Add : AppCompatActivity() {
 //
 //                        skip++
 //                        skipNumber.text=skip.toString()
-//                        if(buttonNext.text=="SKIP"){
+//
 //                            skipNumber.visibility=View.VISIBLE
-//                        }
+//
 //                    }
 
                                       textQuestion.text = "Congratulation! \nYour answer is correct"
@@ -153,7 +153,7 @@ class Add : AppCompatActivity() {
                     answerView.text="Correct Answer is \n$number1+$number2=$correctAnswer"
                     textLife.text = userLife.toString()
                     buttonNext.visibility=View.VISIBLE
-                        //        skipNumber.visibility=View.INVISIBLE
+                               skipNumber.visibility=View.INVISIBLE
                     buttonNext.text="NEXT"
                 }
 

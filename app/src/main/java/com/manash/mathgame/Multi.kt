@@ -2,6 +2,7 @@ package com.manash.mathgame
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -150,8 +151,33 @@ class Multi : AppCompatActivity() {
         }
     }
     fun gameContinue(){
-        number1 = Random.nextInt(0,100)
-        number2 = Random.nextInt(0,10)
+        if(userScore<100){
+            levelView.text="1"
+            number1 = Random.nextInt(0,10)
+            number2 = Random.nextInt(0,10)}
+        else if (userScore>=100 && userScore<200){
+            levelView.text="2"
+            level.setTextColor(Color.YELLOW)
+            number1= Random.nextInt(0,50)
+            number2=Random.nextInt(0,10)
+        }else if(userScore>=200 && userScore<300)
+        {            levelView.text="3"
+            level.setTextColor(Color.argb(255,127,80,30))
+            number1= Random.nextInt(0,100)
+            number2=Random.nextInt(0,10)
+        }else if(userScore>=300 && userScore<400)
+        {            levelView.text="4"
+            level.setTextColor(Color.BLUE)
+            number1= Random.nextInt(0,100)
+            number2=Random.nextInt(0,100)
+        }else{
+            levelView.text="5"
+            level.setTextColor(Color.RED)
+            number1= Random.nextInt(0,1000)
+            number2=Random.nextInt(0,100)
+        }
+
+
         answerView.visibility=View.INVISIBLE
         buttonNext.text="SKIP"
 
